@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.9.0",
+    "@react-rxjs/core": "^0.9.6",
+    "@react-rxjs/utils": "^0.9.5",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^13.5.0",
@@ -14,9 +16,9 @@
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-scripts": "5.0.1",
+    "rxjs": "^7.5.5",
     "typescript": "^4.6.4",
-    "web-vitals": "^2.1.4",
-    "rxjs": "^7.5.5"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -43,14 +45,14 @@
     ]
   },
   "devDependencies": {
-    "@reactivex/rxjs": "^6.6.7",
-    "husky": "4",
     "@emotion/eslint-plugin": "^11.7.0",
+    "@reactivex/rxjs": "^6.6.7",
     "@typescript-eslint/eslint-plugin": "^5.14.0",
     "@typescript-eslint/parser": "^5.14.0",
     "eslint": "^8.10.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "husky": "4",
     "lint-staged": "^12.0.3",
     "prettier": "^2.5.1"
   },

@@ -2,13 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2a3ae96b-c482-4b3d-b138-cd823fb97a76" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.eslintrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/emotion.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/global.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/theme.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/constants/size.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/display/GameDisplay.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/display/vacs/VGameDisplay.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/physics/ballStream.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/physics/barStream.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/physics/blockStream.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/physics/timerStream.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/types/physics.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Main.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +25,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="qlknl3u5" />
@@ -53,7 +66,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1651483274891</updated>
-      <workItem from="1651483277174" duration="966000" />
+      <workItem from="1651483277174" duration="7317000" />
     </task>
     <servers />
   </component>
