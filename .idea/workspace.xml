@@ -2,18 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2a3ae96b-c482-4b3d-b138-cd823fb97a76" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/constants/size.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/display/GameDisplay.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/display/vacs/VGameDisplay.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/physics/ballStream.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/physics/barStream.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/physics/blockStream.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/features/physics/timerStream.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/physics.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Main.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/size.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/size.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/display/GameDisplay.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/display/GameDisplay.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/display/vacs/VGameDisplay.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/display/vacs/VGameDisplay.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/physics/barStream.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/physics/barStream.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +60,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1651483274891</updated>
-      <workItem from="1651483277174" duration="7317000" />
+      <workItem from="1651483277174" duration="11585000" />
     </task>
     <servers />
   </component>

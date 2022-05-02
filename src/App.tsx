@@ -4,13 +4,16 @@ import { ThemeProvider } from '@emotion/react';
 import theme from 'styles/theme';
 import GlobalStyle from 'styles/global';
 import Main from 'pages/Main';
+import { Subscribe } from '@react-rxjs/core';
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <Main />
-    </ThemeProvider>
+    <Subscribe>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Main />
+      </ThemeProvider>
+    </Subscribe>
   );
 }
 

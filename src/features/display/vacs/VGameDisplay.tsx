@@ -1,7 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
 import { css } from '@emotion/react';
-import { DISPLAY_SIZE, X_COORDINATE, Y_COORDINATE } from 'constants/size';
+import { DISPLAY_SIZE } from 'constants/size';
+import { X_COORDINATE, Y_COORDINATE } from 'constants/position';
 
 export interface VGameDisplayProps {
   positions: number[][];

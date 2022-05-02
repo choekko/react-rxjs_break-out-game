@@ -1,11 +1,14 @@
-import { fromEvent, map, scan, tap } from 'rxjs';
+import { fromEvent, map, merge, of, scan, tap } from 'rxjs';
 import { Direction } from 'types/physics';
 import { DISPLAY_SIZE } from 'constants/size';
 
-export const barPosition$ = fromEvent<KeyboardEvent>(document, 'keydown').pipe(
-  map(({ key }) => getDirectionByKey(key)),
-  scan((position, direction) => move(position, direction), 0),
-  tap(e => console.log(e)),
+export const barPositionX$ = merge(
+  of(1),
+  fromEvent<KeyboardEvent>(document, 'keydown').pipe(
+    map(({ key }) => getDirectionByKey(key)),
+    scan((position, direction) => move(position, direction), 1),
+    tap(e => console.log(e)),
+  ),
 );
 
 const getDirectionByKey = (key: KeyboardEvent['key']): Direction => {
