@@ -3,5 +3,5 @@ export const makeIndexArray = (length: number): number[] => {
 };
 
 export const makeArrayStartingWithOne = (length: number): number[] => {
-  return Array.from({ length }, (_, i) => i);
+  return Array.from({ length }, (_, i) => i + 1);
 };
