@@ -17,9 +17,12 @@ function VGameDisplay({ positions, isStarted }: VGameDisplayProps) {
       <table css={gameDisplayStyle(isStarted)}>
         <tbody>
           {[...Y_COORDINATE].reverse().map(positionY => (
-            <tr>
+            <tr key={positionY}>
               {X_COORDINATE.map(positionX => (
-                <VGameDisplayTd isColored={Boolean(positions.find(([x, y]) => x === positionX && y === positionY))} />
+                <VGameDisplayTd
+                  key={`${positionX}-${positionY}`}
+                  isColored={Boolean(positions.find(([x, y]) => x === positionX && y === positionY))}
+                />
               ))}
             </tr>
           ))}

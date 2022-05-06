@@ -6,4 +6,4 @@ export const DISPLAY_SIZE = {
   HEIGHT: 30, // UNIT * HEIGHT = pixel of height
 };
 
-export const BALL_SPEED = 4;
+export const BALL_SPEED = 15;

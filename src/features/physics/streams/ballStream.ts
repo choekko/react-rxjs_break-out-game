@@ -10,6 +10,7 @@ export const ballTimer$ = interval(Math.floor(1000 / BALL_SPEED)).pipe(skipUntil
 
 export const [ballDirectionX$, setBallDirectionX] = createSignal<Direction>();
 export const [ballDirectionY$, setBallDirectionY] = createSignal<Direction>();
+export const [hitTargetPosition$, setHitTargetPosition] = createSignal<[number, number]>();
 
 export const ballPositionX$ = ballTimer$.pipe(
   skipUntil(gameStart$),
