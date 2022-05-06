@@ -1,5 +1,5 @@
 import { Direction } from 'types/physics';
-import { BAR_HALF_SIZE, DISPLAY_SIZE } from 'constants/size';
+import { DISPLAY_SIZE } from 'constants/size';
 
 export const getDirectionByKey = (key: KeyboardEvent['key']): Direction => {
   switch (key) {
@@ -12,9 +12,17 @@ export const getDirectionByKey = (key: KeyboardEvent['key']): Direction => {
   }
 };
 
-export const move = (prevPosition: number, direction: Direction) => {
+export const moveX = (prevPosition: number, direction: Direction, bodyHalfSize: number = 0) => {
   const nextPosition = prevPosition + direction;
-  if (DISPLAY_SIZE.WIDTH - 1 < nextPosition + BAR_HALF_SIZE || nextPosition - BAR_HALF_SIZE < 0) {
+  if (DISPLAY_SIZE.WIDTH - 1 < nextPosition + bodyHalfSize || nextPosition - bodyHalfSize < 0) {
+    return prevPosition;
+  }
+  return nextPosition;
+};
+
+export const moveY = (prevPosition: number, direction: Direction) => {
+  const nextPosition = prevPosition + direction;
+  if (DISPLAY_SIZE.HEIGHT - 1 < nextPosition || nextPosition < 0) {
     return prevPosition;
   }
   return nextPosition;

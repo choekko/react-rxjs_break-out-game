@@ -9,8 +9,7 @@ interface VStartButtonProps {
 function VStartButton({ onStartBtnClick }: VStartButtonProps) {
   return (
     <button css={startButtonStyle} onClick={onStartBtnClick}>
-      {' '}
-      Start{' '}
+      Start
     </button>
   );
 }

@@ -1,15 +1,15 @@
-import { fromEvent, map, merge, of, scan } from 'rxjs';
+import { fromEvent, map, scan, skipUntil, startWith } from 'rxjs';
 import { BAR_POSITION_Y, BAR_START_POSITION_X } from 'constants/position';
-import { getDirectionByKey, move } from 'features/physics/utils';
+import { getDirectionByKey, moveX } from 'features/physics/utils';
 import { makeArrayStartingWithOne } from 'utils/array';
 import { BAR_HALF_SIZE } from 'constants/size';
+import { gameStart$ } from 'features/display/StartButton';
 
-export const barPositionX$ = merge(
-  of(BAR_START_POSITION_X),
-  fromEvent<KeyboardEvent>(document, 'keydown').pipe(
-    map(({ key }) => getDirectionByKey(key)),
-    scan((position, direction) => move(position, direction), BAR_START_POSITION_X),
-  ),
+export const barPositionX$ = fromEvent<KeyboardEvent>(document, 'keydown').pipe(
+  skipUntil(gameStart$),
+  map(({ key }) => getDirectionByKey(key)),
+  scan((position, direction) => moveX(position, direction, BAR_HALF_SIZE), BAR_START_POSITION_X),
+  startWith(BAR_START_POSITION_X),
 );
 
 export const barBodyPositions$ = barPositionX$.pipe(

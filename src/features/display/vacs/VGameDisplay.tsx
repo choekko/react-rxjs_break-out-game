@@ -4,6 +4,7 @@ import { css } from '@emotion/react';
 import { DISPLAY_SIZE } from 'constants/size';
 import { X_COORDINATE, Y_COORDINATE } from 'constants/position';
 import StartButton from 'features/display/StartButton';
+import VGameDisplayTd from 'features/display/vacs/VGameDisplayTd';
 
 export interface VGameDisplayProps {
   positions: number[][];
@@ -18,9 +19,7 @@ function VGameDisplay({ positions, isStarted }: VGameDisplayProps) {
           {[...Y_COORDINATE].reverse().map(positionY => (
             <tr>
               {X_COORDINATE.map(positionX => (
-                <td
-                  css={gameDisplayTdStyle(Boolean(positions.find(([x, y]) => x === positionX && y === positionY)))}
-                ></td>
+                <VGameDisplayTd isColored={Boolean(positions.find(([x, y]) => x === positionX && y === positionY))} />
               ))}
             </tr>
           ))}
@@ -45,10 +44,6 @@ const gameDisplayStyle = (isStarted: boolean) => css`
   height: ${DISPLAY_SIZE.HEIGHT * DISPLAY_SIZE.UNIT}px;
   background-color: skyblue;
   opacity: ${isStarted ? 1 : 0.4};
-`;
-
-const gameDisplayTdStyle = (isValid: boolean) => css`
-  background-color: ${isValid ? 'pink' : 'skyblue'};
 `;
 
 const startButtonWrapStyle = css`
