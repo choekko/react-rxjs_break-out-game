@@ -15,7 +15,7 @@ export const barPositionX$ = fromEvent<KeyboardEvent>(document, 'keydown').pipe(
 export const barBodyPositions$ = barPositionX$.pipe(
   map(barPositionX =>
     makeArrayStartingWithOne(BAR_HALF_SIZE).reduce(
-      (acc, distance) => [...acc, [barPositionX + distance, BAR_POSITION_Y], [barPositionX - distance, BAR_POSITION_Y]],
+      (acc, distance) => [[barPositionX - distance, BAR_POSITION_Y], ...acc, [barPositionX + distance, BAR_POSITION_Y]],
       [[barPositionX, BAR_POSITION_Y]] as number[][],
     ),
   ),

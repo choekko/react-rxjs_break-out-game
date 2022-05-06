@@ -10,8 +10,9 @@ import {
   setBallDirectionX,
   setBallDirectionY,
 } from 'features/physics/streams/ballStream';
-import { DISPLAY_SIZE } from 'constants/size';
+import { BAR_SIZE, DISPLAY_SIZE } from 'constants/size';
 import { Direction } from 'types/physics';
+import { BAR_POSITION_Y } from 'constants/position';
 
 const [useBarBodyPositions] = bind(barBodyPositions$);
 const [useBallPosition] = bind(ballPosition$);
@@ -27,25 +28,38 @@ function GameDisplay() {
   const ballDirectionY = useBallDirectionY();
 
   const checkBallHit = (): 'hitX' | 'hitY' | null => {
-    const nextBallPositionX = ballPositionX + ballDirectionX;
-    if (nextBallPositionX > DISPLAY_SIZE.WIDTH - 1 || nextBallPositionX < 0) {
-      return 'hitX';
-    }
+    const leftMostXOfBar = barBodyPositions[0][0];
+    const rightMostXOfBar = barBodyPositions[BAR_SIZE - 1][0];
 
     const nextBallPositionY = ballPositionY + ballDirectionY;
-    if (nextBallPositionY > DISPLAY_SIZE.HEIGHT - 1 || nextBallPositionY < 0) {
+    const hitsTopBottomWall = nextBallPositionY > DISPLAY_SIZE.HEIGHT - 1 || nextBallPositionY < 0;
+    const hitsTopOfBar =
+      leftMostXOfBar <= ballPositionX && ballPositionX <= rightMostXOfBar && nextBallPositionY === BAR_POSITION_Y;
+    if (hitsTopBottomWall || hitsTopOfBar) {
+      if (hitsTopOfBar) console.log('top');
       return 'hitY';
+    }
+
+    const nextBallPositionX = ballPositionX + ballDirectionX;
+    const hitsLeftRightWall = nextBallPositionX > DISPLAY_SIZE.WIDTH - 1 || nextBallPositionX < 0;
+    const hitsSideOfBar =
+      BAR_POSITION_Y <= ballPositionY &&
+      ballPositionY <= BAR_POSITION_Y + 1 &&
+      (nextBallPositionX === leftMostXOfBar || nextBallPositionX === rightMostXOfBar);
+    if (hitsLeftRightWall || hitsSideOfBar) {
+      if (hitsSideOfBar) console.log('side');
+      return 'hitX';
     }
 
     return null;
   };
 
   const hitInfo = checkBallHit();
-  if (hitInfo === 'hitX') {
-    setBallDirectionX(-ballDirectionX as Direction);
-  }
   if (hitInfo === 'hitY') {
     setBallDirectionY(-ballDirectionY as Direction);
+  }
+  if (hitInfo === 'hitX') {
+    setBallDirectionX(-ballDirectionX as Direction);
   }
 
   const positions = [...barBodyPositions, ballPosition];
