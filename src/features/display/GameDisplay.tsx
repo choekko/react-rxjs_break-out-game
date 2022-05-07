@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import VGameDisplay from 'features/display/vacs/VGameDisplay';
 import { bind } from '@react-rxjs/core';
 import { barBodyPositions$ } from 'features/physics/streams/barStream';
@@ -84,25 +84,28 @@ function GameDisplay() {
   };
 
   const hitInfo = checkBallHit();
-  if (hitInfo) {
-    console.log('here');
-    setHitTargetPosition(hitInfo.hitTargetPosition);
 
-    switch (hitInfo.hitDirection) {
-      case 'hitCorner':
-        setBallDirectionY(-ballDirectionY as Direction);
-        setBallDirectionX(-ballDirectionX as Direction);
-        break;
-      case 'hitY':
-        setBallDirectionY(-ballDirectionY as Direction);
-        break;
-      case 'hitX':
-        setBallDirectionX(-ballDirectionX as Direction);
-        break;
-      default:
-        break;
+  useEffect(() => {
+    if (hitInfo) {
+      setHitTargetPosition(hitInfo.hitTargetPosition);
+
+      switch (hitInfo.hitDirection) {
+        case 'hitCorner':
+          setBallDirectionY(-ballDirectionY as Direction);
+          setBallDirectionX(-ballDirectionX as Direction);
+          break;
+        case 'hitY':
+          console.log('here');
+          setBallDirectionY(-ballDirectionY as Direction);
+          break;
+        case 'hitX':
+          setBallDirectionX(-ballDirectionX as Direction);
+          break;
+        default:
+          break;
+      }
     }
-  }
+  }, [hitInfo, ballDirectionX, ballDirectionY]);
 
   const positions = [...barBodyPositions, ballPosition, ...blockPositions];
 
