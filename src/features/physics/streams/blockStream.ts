@@ -1,7 +1,7 @@
 import { gameStart$ } from 'features/display/StartButton';
 import { filter, map, merge, of, scan, startWith, switchMap } from 'rxjs';
 import { hitTargetPosition$ } from 'features/physics/streams/ballStream';
-import { makeIndexArray } from 'utils/array';
+import { makeIndexArray, shuffleArray } from 'utils/array';
 import { DISPLAY_SIZE } from 'constants/size';
 
 const BLOCK_AREA_HEIGHT = 10;
@@ -14,12 +14,6 @@ const makeBlockPositionCandidates = (): [number, number][] =>
   BLOCK_COORDINATE_X_POSSIBLE.flatMap(x =>
     BLOCK_COORDINATE_Y_POSSIBLE.reduce<[number, number][]>((acc, y) => [...acc, [x, y]], []),
   );
-
-function shuffleArray<T = any>(array: T[]) {
-  const result = array.slice();
-  result.sort(() => Math.random() - 0.5);
-  return result;
-}
 
 export const blockPositions$ = gameStart$.pipe(
   filter(isStarted => isStarted === true),

@@ -2,7 +2,7 @@
 import React, { memo } from 'react';
 import { css, Theme } from '@emotion/react';
 import { DISPLAY_SIZE } from 'constants/size';
-import { X_COORDINATE, Y_COORDINATE } from 'constants/position';
+import { X_COORDINATE, Y_COORDINATE } from 'constants/initialValue';
 import StartButton from 'features/display/StartButton';
 import VGameDisplayTd from 'features/display/vacs/VGameDisplayTd';
 

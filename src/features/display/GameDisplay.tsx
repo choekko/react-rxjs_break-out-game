@@ -1,8 +1,8 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import VGameDisplay from 'features/display/vacs/VGameDisplay';
 import { bind } from '@react-rxjs/core';
 import { barBodyPositions$ } from 'features/physics/streams/barStream';
-import { useGameStart } from 'features/display/StartButton';
+import { setGameStart, useGameStart } from 'features/display/StartButton';
 import {
   ballDirectionX$,
   ballDirectionY$,
@@ -13,7 +13,7 @@ import {
 } from 'features/physics/streams/ballStream';
 import { BAR_SIZE, DISPLAY_SIZE } from 'constants/size';
 import { Direction } from 'types/physics';
-import { BAR_POSITION_Y } from 'constants/position';
+import { BALL_START_DIRECTION_X, BALL_START_DIRECTION_Y, BAR_POSITION_Y } from 'constants/initialValue';
 import { blockPositions$ } from 'features/physics/streams/blockStream';
 
 const [useBarBodyPositions] = bind(barBodyPositions$);
@@ -23,7 +23,7 @@ const [useBallDirectionY] = bind(ballDirectionY$, 1);
 const [useBlockPositions] = bind(blockPositions$);
 
 interface HitInfo {
-  hitDirection: 'hitX' | 'hitY' | 'hitCorner';
+  hitDirection: 'hitX' | 'hitY' | 'hitCorner' | 'hitFloor';
   hitTargetPosition: [number, number];
 }
 
@@ -36,7 +36,7 @@ function GameDisplay() {
   const ballDirectionY = useBallDirectionY();
   const blockPositions = useBlockPositions();
 
-  const checkBallHit = (): HitInfo | null => {
+  const checkBallHit = useCallback((): HitInfo | null => {
     const leftMostXOfBar = barBodyPositions[0][0];
     const rightMostXOfBar = barBodyPositions[BAR_SIZE - 1][0];
 
@@ -65,6 +65,8 @@ function GameDisplay() {
     const hitsCornerOfBlock = blockPositions.some(([x, y]) => x === nextBallPositionX && y === nextBallPositionY);
     const hitsSideOfBlock = blockPositions.some(([x, y]) => x === nextBallPositionX && y === ballPositionY);
 
+    const hitsFloor = ballPositionY === 0;
+
     if (hitsLeftRightWall || hitsSideOfBar || hitsSideOfBlock) {
       if (hitsSideOfBar) console.log('side');
       return {
@@ -80,12 +82,25 @@ function GameDisplay() {
       };
     }
 
-    return null;
-  };
+    if (hitsFloor) {
+      return {
+        hitDirection: 'hitFloor',
+        hitTargetPosition: [nextBallPositionX, nextBallPositionY],
+      };
+    }
 
-  const hitInfo = checkBallHit();
+    return null;
+  }, [ballPosition, ballDirectionX, ballDirectionY]);
+
+  const hitInfo = useMemo(() => checkBallHit(), [ballPosition, ballDirectionX, ballDirectionY]);
 
   useEffect(() => {
+    if (!isStarted) {
+      setBallDirectionX(BALL_START_DIRECTION_X);
+      setBallDirectionY(BALL_START_DIRECTION_Y);
+      return;
+    }
+
     if (hitInfo) {
       setHitTargetPosition(hitInfo.hitTargetPosition);
 
@@ -100,11 +115,14 @@ function GameDisplay() {
         case 'hitX':
           setBallDirectionX(-ballDirectionX as Direction);
           break;
+        case 'hitFloor':
+          setGameStart(false);
+          return;
         default:
           break;
       }
     }
-  }, [hitInfo, ballDirectionX, ballDirectionY]);
+  }, [hitInfo, isStarted]);
 
   const positions = [...barBodyPositions, ballPosition, ...blockPositions];
   const hit = useMemo(() => Boolean(hitInfo?.hitDirection), [ballPosition]);
