@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import VGameDisplay from 'features/display/vacs/VGameDisplay';
 import { bind } from '@react-rxjs/core';
 import { barBodyPositions$ } from 'features/physics/streams/barStream';
@@ -36,7 +36,7 @@ function GameDisplay() {
   const ballDirectionY = useBallDirectionY();
   const blockPositions = useBlockPositions();
 
-  const checkBallHit = useCallback((): HitInfo | null => {
+  const checkBallHit = (): HitInfo | null => {
     const leftMostXOfBar = barBodyPositions[0][0];
     const rightMostXOfBar = barBodyPositions[BAR_SIZE - 1][0];
 
@@ -81,7 +81,7 @@ function GameDisplay() {
     }
 
     return null;
-  }, [ballPosition, blockPositions, barBodyPositions]);
+  };
 
   const hitInfo = checkBallHit();
 
@@ -107,7 +107,7 @@ function GameDisplay() {
   }, [hitInfo, ballDirectionX, ballDirectionY]);
 
   const positions = [...barBodyPositions, ballPosition, ...blockPositions];
-  const hit = useMemo(() => Boolean(hitInfo?.hitDirection), []); // TODO
+  const hit = useMemo(() => Boolean(hitInfo?.hitDirection), [ballPosition]);
 
   return <VGameDisplay positions={positions} ballPosition={ballPosition} isStarted={isStarted} hit={hit} />;
 }

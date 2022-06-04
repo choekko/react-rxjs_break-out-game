@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react';
+import React, { memo } from 'react';
 import { css, Theme } from '@emotion/react';
 import { DISPLAY_SIZE } from 'constants/size';
 import { X_COORDINATE, Y_COORDINATE } from 'constants/position';
@@ -62,4 +62,4 @@ const startButtonWrapStyle = css`
   transform: translate(-50%, -50%);
 `;
 
-export default VGameDisplay;
+export default memo(VGameDisplay);
