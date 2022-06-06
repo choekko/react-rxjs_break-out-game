@@ -44,7 +44,7 @@ src/
     ㄴ vacs/     // View Asset Components (tsx + style)
   ㄴ physics/    // Logics or Streams for Game Physics 
 ㄴ pages/        // Page Components 
-ㄴ styles/       // Common Styles (for Emotion)
+ㄴ styles/       // Files for Setting Emotion and Common Style
 ㄴ types/        // Common Types
 ㄴ utils/        // Common Utils
 ```
